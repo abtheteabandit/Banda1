@@ -5,8 +5,26 @@ import java.util.LinkedList;
 
 public class User {
 	
+	final int jazzPrime = 3;
+	final int rockPrime = 5;
+	final int bluesPrime = 7;
+	final int experPrime = 13;
+	final int classPrime = 13;
+	final int funkPrime = 17;
+	final int latinPrime = 19;
+	final int gospelPrime = 23;
+	final int rNBPrime = 29;
+	final int rapPrime = 37;
+	final int countryPrime = 41;
+	final int folkPrime = 43;
+	final int popPrime = 47;
+	final int electronicPrime = 53;
+	final int reggePrime = 59;
+	final int[] primeG = {jazzPrime, rockPrime, rapPrime, electronicPrime, countryPrime, popPrime, bluesPrime, classPrime, folkPrime, experPrime, gospelPrime, funkPrime, latinPrime, reggePrime};
+
+	
 	public User(String username, String email, String password, String firstName, String lastName, int[] genreVal,
-			double posX, double posY, double maxDist, String[] lookignFors, String[] plays, int goals) {
+			double posX, double posY, double maxDist, String[] lookignFors, String[] plays, int goals, int start) {
 		
 		
 		
@@ -37,6 +55,8 @@ public class User {
 		this.jamsIn=new LinkedList<jam>();
 		this.jammers=new LinkedList<User>();
 		this.jamsMade=new LinkedList<jam>();
+		this.start=start;
+		this.totalKey=0;
 		
 		if(this.genreVal[0]>=4){
 			this.jazz=true;
@@ -105,7 +125,8 @@ public class User {
 	
 	private String username, email, password, firstName, lastName, prefferedJamInst;
 	private int[] genreVal;
-	private int  goals;
+	private int  goals, start;
+	private Integer goalStartKey, genreKey, instsPlayKey, instsNeededKey, posKey, distKey, totalKey;
 	private compMerchToUser compToMerch;
 	private Compatibility tempCompScore;
 	private double posX, posY, maxDist, area;
@@ -315,6 +336,102 @@ public class User {
 		this.genreVal = genreVal;
 	}
 	
+	public int getJazzPrime() {
+		return jazzPrime;
+	}
+	public int getRockPrime() {
+		return rockPrime;
+	}
+	public int getBluesPrime() {
+		return bluesPrime;
+	}
+	public int getExperPrime() {
+		return experPrime;
+	}
+	public int getClassPrime() {
+		return classPrime;
+	}
+	public int getFunkPrime() {
+		return funkPrime;
+	}
+	public int getLatinPrime() {
+		return latinPrime;
+	}
+	public int getGospelPrime() {
+		return gospelPrime;
+	}
+	public int getrNBPrime() {
+		return rNBPrime;
+	}
+	public int getRapPrime() {
+		return rapPrime;
+	}
+	public int getCountryPrime() {
+		return countryPrime;
+	}
+	public int getFolkPrime() {
+		return folkPrime;
+	}
+	public int getPopPrime() {
+		return popPrime;
+	}
+	public int getElectronicPrime() {
+		return electronicPrime;
+	}
+	public int getReggePrime() {
+		return reggePrime;
+	}
+	public int[] getPrimeG() {
+		return primeG;
+	}
+	public int getStart() {
+		return start;
+	}
+	public Integer getGoalStartKey() {
+		return goalStartKey;
+	}
+	public Integer getGenreKey() {
+		return genreKey;
+	}
+	public Integer getInstsPlayKey() {
+		return instsPlayKey;
+	}
+	public Integer getInstsNeededKey() {
+		return instsNeededKey;
+	}
+	public Integer getPosKey() {
+		return posKey;
+	}
+	public Integer getDistKey() {
+		return distKey;
+	}
+	public Integer getTotalKey() {
+		return totalKey;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public void setGoalStartKey(Integer goalStartKey) {
+		this.goalStartKey = goalStartKey;
+	}
+	public void setGenreKey(Integer genreKey) {
+		this.genreKey = genreKey;
+	}
+	public void setInstsPlayKey(Integer instsPlayKey) {
+		this.instsPlayKey = instsPlayKey;
+	}
+	public void setInstsNeededKey(Integer instsNeededKey) {
+		this.instsNeededKey = instsNeededKey;
+	}
+	public void setPosKey(Integer posKey) {
+		this.posKey = posKey;
+	}
+	public void setDistKey(Integer distKey) {
+		this.distKey = distKey;
+	}
+	public void setTotalKey(Integer totalKey) {
+		this.totalKey = totalKey;
+	}
 	public void setPosX(double posX) {
 		this.posX = posX;
 	}
@@ -385,52 +502,73 @@ public class User {
 		user+="]";
 		return user;
 	}
+	
+	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (RnB ? 1231 : 1237);
-		long temp;
-		temp = Double.doubleToLongBits(area);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + (blues ? 1231 : 1237);
-		result = prime * result + (classical ? 1231 : 1237);
-		result = prime * result + ((compatibleDistnInst == null) ? 0 : compatibleDistnInst.hashCode());
-		result = prime * result + ((compatibleInst == null) ? 0 : compatibleInst.hashCode());
-		result = prime * result + ((compatibleSorted == null) ? 0 : compatibleSorted.hashCode());
-		result = prime * result + (country ? 1231 : 1237);
-		result = prime * result + (electronic ? 1231 : 1237);
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + (experimental ? 1231 : 1237);
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + (folk ? 1231 : 1237);
-		result = prime * result + (funk ? 1231 : 1237);
-		result = prime * result + Arrays.hashCode(genreOrdered);
-		result = prime * result + Arrays.hashCode(genreVal);
-		result = prime * result + goals;
-		result = prime * result + (gospel ? 1231 : 1237);
-		result = prime * result + (hipHop ? 1231 : 1237);
-		result = prime * result + (jazz ? 1231 : 1237);
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + (latin ? 1231 : 1237);
-		result = prime * result + ((lookingFor == null) ? 0 : lookingFor.hashCode());
-		result = prime * result + ((lookingForMe == null) ? 0 : lookingForMe.hashCode());
-		result = prime * result + Arrays.hashCode(lookingForS);
-		temp = Double.doubleToLongBits(maxDist);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + Arrays.hashCode(plays);
-		result = prime * result + (pop ? 1231 : 1237);
-		temp = Double.doubleToLongBits(posX);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(posY);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + (regge ? 1231 : 1237);
-		result = prime * result + (rock ? 1231 : 1237);
-		result = prime * result + ((tempCompScore == null) ? 0 : tempCompScore.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
+		this.genreKey=1;
+		for(int i=0; i<this.genreVal.length; i++){
+			this.genreKey=this.genreKey*this.genreVal[i]*primeG[i];
+		}
+		
+		this.instsNeededKey=0;
+		for(int i=0; i<this.lookingForS.length; i++){
+			this.instsNeededKey=this.lookingForS[i].hashCode()+this.instsNeededKey;
+		}
+		this.goalStartKey=0;
+		switch(this.goals){
+			case 1:
+				this.goals=61;
+				break;
+			case 2:
+				this.goals=67;
+				break;
+			case 3:
+				this.goals=71;
+				break;
+			case 4:
+				this.goals=73;
+				break;
+			case 5:
+				this.goals=79;
+				break;
+		}
+		switch(this.start){
+		case 1:
+			this.start=61;
+			break;
+		case 2:
+			this.start=67;
+			break;
+		case 3:
+			this.start=71;
+			break;
+		case 4:
+			this.start=73;
+			break;
+		case 5:
+			this.start=79;
+			break;
+		}
+		
+		this.goalStartKey=this.goals*this.start;
+		this.instsPlayKey=0;
+		for(int i=0; i<this.plays.length; i++){
+			this.instsPlayKey=this.plays[i].hashCode()+this.instsPlayKey;
+		}
+		
+		this.posKey=((int)(this.posX)*83)*((int)(this.posY)*97);
+		this.distKey=(int)this.maxDist * 101;
+		this.totalKey=this.posKey*distKey*goalStartKey*instsPlayKey*this.genreKey*this.instsNeededKey;
+		return this.totalKey;
+		
 	}
+	
+	public Integer getHashCode(){
+		return this.totalKey;
+	}
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
