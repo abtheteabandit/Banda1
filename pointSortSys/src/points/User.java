@@ -559,7 +559,7 @@ public class User {
 		
 		this.posKey=((int)(this.posX)*83)*((int)(this.posY)*97);
 		this.distKey=(int)this.maxDist * 101;
-		this.totalKey=this.posKey*distKey*goalStartKey*instsPlayKey*this.genreKey*this.instsNeededKey;
+		this.totalKey=goalStartKey*instsPlayKey*this.genreKey*this.instsNeededKey;
 		return this.totalKey;
 		
 	}

@@ -5,10 +5,10 @@ import java.util.LinkedList;
 
 public class User_Idea_Goals{
 
-	public User_Idea_Goals( int g, int s, Integer prevKey) {
+	public User_Idea_Goals( int g, int s) {
 		this.goal=g;
 		this.start=s;
-		this.prevKey=prevKey;
+		this.alive=false;
 		this.nextKey=1;
 		this.computePrimeKey();
 		this.nextUserIdeas=new HashMap<Integer, User_Idea_Genres>();
@@ -18,13 +18,69 @@ public class User_Idea_Goals{
 
 		private int goal;
 		private int start;
-		private Integer prevKey;
+		private boolean alive;
 		private Integer primeKey;
 		private Integer nextKey;
 		private HashMap<Integer, User_Idea_Genres> nextUserIdeas;
 		private LinkedList<int[]> randomGs;
 		
-	public void computePrimeKey(){
+	public int getGoal() {
+			return goal;
+		}
+
+		public int getStart() {
+			return start;
+		}
+
+		public boolean isAlive() {
+			return alive;
+		}
+
+		public Integer getPrimeKey() {
+			return primeKey;
+		}
+
+		public Integer getNextKey() {
+			return nextKey;
+		}
+
+		public HashMap<Integer, User_Idea_Genres> getNextUserIdeas() {
+			return nextUserIdeas;
+		}
+
+		public LinkedList<int[]> getRandomGs() {
+			return randomGs;
+		}
+
+		public void setGoal(int goal) {
+			this.goal = goal;
+		}
+
+		public void setStart(int start) {
+			this.start = start;
+		}
+
+		public void setAlive(boolean alive) {
+			this.alive = alive;
+		}
+
+		public void setPrimeKey(Integer primeKey) {
+			this.primeKey = primeKey;
+		}
+
+		public void setNextKey(Integer nextKey) {
+			this.nextKey = nextKey;
+		}
+
+		public void setNextUserIdeas(HashMap<Integer, User_Idea_Genres> nextUserIdeas) {
+			this.nextUserIdeas = nextUserIdeas;
+		}
+
+		public void setRandomGs(LinkedList<int[]> randomGs) {
+			this.randomGs = randomGs;
+		}
+
+	public Integer computePrimeKey(){
 		switch(this.goal){
 		case 1:
 			this.goal=3;
@@ -61,10 +117,11 @@ public class User_Idea_Goals{
 			break;
 		}
 		this.primeKey = this.start*this.goal;
+		return this.primeKey;
 	}
 	
 	public Integer passKey(){
-		this.nextKey=this.prevKey*this.primeKey;
+		this.nextKey=this.primeKey;
 		return this.nextKey;
 	}
 	
@@ -82,7 +139,7 @@ public class User_Idea_Goals{
 	
 	public void fillNextUserIdeaMap(){
 		for(int[] x : this.randomGs){
-			User_Idea_Genres y = new User_Idea_Genres(x, this.nextKey);
+			User_Idea_Genres y = new User_Idea_Genres(x, this.nextKey, this);
 			this.nextUserIdeas.put(y.computeKey(), y);
 		}
 	}

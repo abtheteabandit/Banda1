@@ -10,9 +10,11 @@ public class User_Idea_InstsPlayed{
 	
 
 
-	public User_Idea_InstsPlayed(String[] insts, Integer prevKey) {
+	public User_Idea_InstsPlayed(String[] insts, Integer prevKey, User_Idea_Genres old) {
 
 		this.instsPlayed = insts;
+		this.alive = false;
+		this.prevLayer = old;
 		this.prevKey=prevKey;
 		this.nextKey=1;
 		this.hashInsts = new int[this.instsPlayed.length];
@@ -34,7 +36,9 @@ public class User_Idea_InstsPlayed{
 	private Integer primeKey;
 	private Integer nextKey;
 	private int[] hashInsts;
+	private boolean alive;
 	private List<String> instsBank;
+	private User_Idea_Genres prevLayer;
 	private HashMap<Integer, User_Idea_InstsNeeded> nextUserIdeas;
 	private LinkedList<User_Idea_InstsNeeded> usserIdeasHere;
 	private List<List<String>> possInsts;
@@ -92,11 +96,96 @@ public class User_Idea_InstsPlayed{
 	}
 	
 	
+	public String[] getInstsPlayed() {
+		return instsPlayed;
+	}
+
+	public Integer getPrevKey() {
+		return prevKey;
+	}
+
+	public Integer getPrimeKey() {
+		return primeKey;
+	}
+
+	public int[] getHashInsts() {
+		return hashInsts;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public List<String> getInstsBank() {
+		return instsBank;
+	}
+
+	public User_Idea_Genres getPrevLayer() {
+		return prevLayer;
+	}
+
+	public HashMap<Integer, User_Idea_InstsNeeded> getNextUserIdeas() {
+		return nextUserIdeas;
+	}
+
+	public LinkedList<User_Idea_InstsNeeded> getUsserIdeasHere() {
+		return usserIdeasHere;
+	}
+
+	public List<List<String>> getPossInsts() {
+		return possInsts;
+	}
+
+	public void setInstsPlayed(String[] instsPlayed) {
+		this.instsPlayed = instsPlayed;
+	}
+
+	public void setPrevKey(Integer prevKey) {
+		this.prevKey = prevKey;
+	}
+
+	public void setPrimeKey(Integer primeKey) {
+		this.primeKey = primeKey;
+	}
+
+	public void setNextKey(Integer nextKey) {
+		this.nextKey = nextKey;
+	}
+
+	public void setHashInsts(int[] hashInsts) {
+		this.hashInsts = hashInsts;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+		this.prevLayer.setAlive(this.alive);
+	}
+
+	public void setInstsBank(List<String> instsBank) {
+		this.instsBank = instsBank;
+	}
+
+	public void setPrevLayer(User_Idea_Genres prevLayer) {
+		this.prevLayer = prevLayer;
+	}
+
+	public void setNextUserIdeas(HashMap<Integer, User_Idea_InstsNeeded> nextUserIdeas) {
+		this.nextUserIdeas = nextUserIdeas;
+	}
+
+	public void setUsserIdeasHere(LinkedList<User_Idea_InstsNeeded> usserIdeasHere) {
+		this.usserIdeasHere = usserIdeasHere;
+	}
+
+	public void setPossInsts(List<List<String>> possInsts) {
+		this.possInsts = possInsts;
+	}
+
 	public void createNextUserIdeas(){
 		this.setNextKey();
 		for (List<String> x : this.possInsts){
 			String[] tempArr = (java.lang.String[]) x.toArray();
-			User_Idea_InstsNeeded y = new User_Idea_InstsNeeded(tempArr, this.nextKey);
+			User_Idea_InstsNeeded y = new User_Idea_InstsNeeded(tempArr, this.nextKey, this);
 			this.usserIdeasHere.add(y);
 			this.nextUserIdeas.put(y.computePrimeKey(), y);
 		}
