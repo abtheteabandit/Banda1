@@ -1,0 +1,18 @@
+[submodule "Banda"]
+	path = Banda
+	url = ./Banda
+[submodule "24hPractice"]
+	path = 24hPractice
+	url = ./24hPractice
+[submodule "3DEarth"]
+	path = 3DEarth
+	url = ./3DEarth
+[submodule "AnimationTests"]
+	path = AnimationTests
+	url = ./AnimationTests
+[submodule "AutoLayout"]
+	path = AutoLayout
+	url = ./AutoLayout
+[submodule "draggableDemo"]
+	path = draggableDemo
+	url = ./draggableDemo
