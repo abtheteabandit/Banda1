@@ -1,18 +1,18 @@
 [submodule "Banda"]
 	path = Banda
-	url = ./Banda
+	url = https://github.com/abtheteabandit/Banda
 [submodule "24hPractice"]
 	path = 24hPractice
-	url = ./24hPractice
+	url = https://github.com/abtheteabandit/24hPractice
 [submodule "3DEarth"]
 	path = 3DEarth
-	url = ./3DEarth
+	url = https://github.com/abtheteabandit/3DEarth
 [submodule "AnimationTests"]
 	path = AnimationTests
-	url = ./AnimationTests
+	url = https://github.com/abtheteabandit/AnimationTests
 [submodule "AutoLayout"]
 	path = AutoLayout
-	url = ./AutoLayout
+	url = https://github.com/abtheteabandit/AutoLayout
 [submodule "draggableDemo"]
 	path = draggableDemo
-	url = ./draggableDemo
+	url = https://github.com/abtheteabandit/draggableDemo
